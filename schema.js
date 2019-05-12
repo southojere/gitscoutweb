@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const baseurl = "https://api.github.com/";
 const auth = '?client_id=28ddb00e958e20e80330&client_secret=f2604eaafb3dc9afca773c76f8e0e84bb9591363';
-const numResults = '&per_page=3';
+const numResults = '&per_page=20';
 
 const {
     GraphQLObjectType,
