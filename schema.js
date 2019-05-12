@@ -22,9 +22,16 @@ const DeveloperType = new GraphQLObjectType({
         avatar_url: { type: GraphQLString },
         html_url: { type: GraphQLString },
         followers: {type: GraphQLInt},
+        following: {type: GraphQLInt},
         email: { type: GraphQLString },
         blog: { type: GraphQLString },
-        company: { type: GraphQLString }
+        company: { type: GraphQLString },
+        bio: { type: GraphQLString },
+        hireable: {type: GraphQLBoolean},
+        public_gists: {type: GraphQLInt},
+        location: { type: GraphQLString },
+        public_repos: {type: GraphQLInt},
+        name: { type: GraphQLString }
     })
 });
 
@@ -40,7 +47,14 @@ async function userReducer(user) {
         company: detailedUser.company,
         blog: detailedUser.blog,
         followers: detailedUser.followers,
-        avatar_url: detailedUser.avatar_url
+        following: detailedUser.followers,
+        avatar_url: detailedUser.avatar_url,
+        bio: detailedUser.bio || '-',
+        hireable: detailedUser.hireable,
+        public_gists: detailedUser.public_gists,
+        location:detailedUser.location,
+        public_repos:detailedUser.public_repos,
+        name:detailedUser.name
     };
 }
 
@@ -51,7 +65,6 @@ const RootQuery = new GraphQLObjectType({
         users: {
             type: new GraphQLList(DeveloperType),
             async resolve(parent, args) {
-                console.log(baseurl + "users" + auth + numResults)
                 const result = await axios(baseurl + "users" + auth + numResults);
                 return result.data.map(user => userReducer(user));
                 
