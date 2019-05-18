@@ -1,8 +1,10 @@
 const axios = require('axios');
-
+const GitHub = require('./GitHub');
 const baseurl = "https://api.github.com/";
 const auth = '?client_id=28ddb00e958e20e80330&client_secret=f2604eaafb3dc9afca773c76f8e0e84bb9591363';
-const numResults = '&per_page=20';
+const numResults = '&per_page=2';
+
+const GitHubDataSource = new GitHub();
 
 const {
     GraphQLObjectType,
@@ -42,7 +44,7 @@ async function userReducer(user) {
     return {
         id: detailedUser.id || -1,
         login: detailedUser.login || 'not found',
-        email: detailedUser.email,
+        email: detailedUser.email || '-',
         html_url: detailedUser.html_url,
         company: detailedUser.company,
         blog: detailedUser.blog,
@@ -54,7 +56,7 @@ async function userReducer(user) {
         public_gists: detailedUser.public_gists,
         location:detailedUser.location,
         public_repos:detailedUser.public_repos,
-        name:detailedUser.name
+        name:detailedUser.name || '-' 
     };
 }
 
@@ -65,11 +67,23 @@ const RootQuery = new GraphQLObjectType({
         users: {
             type: new GraphQLList(DeveloperType),
             async resolve(parent, args) {
-                const result = await axios(baseurl + "users" + auth + numResults);
-                return result.data.map(user => userReducer(user));
+                const result = await GitHubDataSource.getAllUsers();
+                return result;
                 
             }
         },
+        usersInLocation: {
+            type: new GraphQLList(DeveloperType),
+            args: {
+                location: { type: GraphQLString }
+            },
+            async resolve(parent, args) {
+                console.log('resolving :'+args.location);
+                const result = await GitHubDataSource.getUsersAtLocation({location: args.location});
+                return Promise.all(result);
+                
+            }
+        }
     }
 });
 
