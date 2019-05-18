@@ -38,28 +38,6 @@ const DeveloperType = new GraphQLObjectType({
 });
 
 
-async function userReducer(user) {
-    const result = await axios(user.url + auth);
-    const detailedUser = result.data;
-    return {
-        id: detailedUser.id || -1,
-        login: detailedUser.login || 'not found',
-        email: detailedUser.email || '-',
-        html_url: detailedUser.html_url,
-        company: detailedUser.company,
-        blog: detailedUser.blog,
-        followers: detailedUser.followers,
-        following: detailedUser.followers,
-        avatar_url: detailedUser.avatar_url,
-        bio: detailedUser.bio || '-',
-        hireable: detailedUser.hireable,
-        public_gists: detailedUser.public_gists,
-        location:detailedUser.location,
-        public_repos:detailedUser.public_repos,
-        name:detailedUser.name || '-' 
-    };
-}
-
 // Root Query
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -75,11 +53,12 @@ const RootQuery = new GraphQLObjectType({
         usersInLocation: {
             type: new GraphQLList(DeveloperType),
             args: {
-                location: { type: GraphQLString }
+                location: { type: GraphQLString },
+                sortBy: { type: GraphQLString }
             },
             async resolve(parent, args) {
                 console.log('resolving :'+args.location);
-                const result = await GitHubDataSource.getUsersAtLocation({location: args.location});
+                const result = await GitHubDataSource.getUsersAtLocation({location: args.location,sortBy:args.sortBy});
                 return Promise.all(result);
                 
             }

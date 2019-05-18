@@ -43,8 +43,13 @@ class GitHubAPI {
     return this.userReducer(res);
   }
 
-  async getUsersAtLocation({location}) {
-    const response = await axios(this.baseurl + "search/users?q=location:" + location);
+  /**
+   * 
+   * @param {String} location city/location to search in
+   * @param {String} sortBy how the result are going to be sorted i.e. followers, gists, repos...radio buttons 
+   */
+  async getUsersAtLocation({location,sortBy}) {
+    const response = await axios(this.baseurl + "search/users?q=location:" + location + "+sort:" + sortBy);
     const data = response.data ;
     return Array.isArray(data.items)
       ? data.items.map(user => this.userReducer(user)) : [];
