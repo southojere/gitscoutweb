@@ -19,7 +19,7 @@ class GitHubAPI {
         company: detailedUser.company,
         blog: detailedUser.blog,
         followers: detailedUser.followers,
-        following: detailedUser.followers,
+        following: detailedUser.following,
         avatar_url: detailedUser.avatar_url,
         bio: detailedUser.bio || '-',
         hireable: detailedUser.hireable,
