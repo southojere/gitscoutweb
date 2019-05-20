@@ -1,9 +1,13 @@
-// const { RESTDataSource } = require('apollo-datasource-rest');
 const axios = require('axios');
+
 class GitHubAPI {
   constructor() {
     this.baseurl = "https://api.github.com/";
-    this.auth = '?client_id=28ddb00e958e20e80330&client_secret=f2604eaafb3dc9afca773c76f8e0e84bb9591363';
+    this.auth = `?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`;
+    // no auth -> just use normal api query without key
+    if(process.env.GITHUB_CLIENT_ID || process.env.GITHUB_CLIENT_SECRET) {
+      this.auth = "";
+    }
     this.numResults = '&per_page=6';
   }
 
@@ -30,6 +34,9 @@ class GitHubAPI {
     };
   }
 
+  /**
+   * deprecated - no need to get all users...
+   */
   async getAllUsers() {
     const response = await axios(this.baseurl + "users" + this.auth + this.numResults);
     const data = response.data ;
@@ -38,6 +45,9 @@ class GitHubAPI {
       ? data.map(user => this.userReducer(user)) : [];
   }
 
+  /**
+   * Currently not used  
+   */
   async getUser({ login }) {
     const res = await this.get('users/'+login +this.auth);
     return this.userReducer(res);
