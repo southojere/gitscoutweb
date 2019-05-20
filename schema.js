@@ -1,8 +1,5 @@
 const axios = require('axios');
 const GitHub = require('./GitHub');
-const baseurl = "https://api.github.com/";
-const auth = `?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`;
-
 
 const GitHubDataSource = new GitHub();
 
@@ -42,7 +39,6 @@ const DeveloperType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
-        // deprecated - no need to get this info... 
         users: {
             type: new GraphQLList(DeveloperType),
             async resolve(parent, args) {
