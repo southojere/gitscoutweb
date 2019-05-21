@@ -1,0 +1,119 @@
+body {
+    background-color: #f2f5f8;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+.personList {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    
+  }
+  
+  .personContainer {
+    display:flex;
+    flex-direction:column;
+    box-shadow: 0px 4px 6px 0px rgba(133,133,133,1);
+    padding:.5rem;
+    border-radius:4px;
+    background-color:white;
+    /* min-width:325px; */
+    /* max-width:400px; */
+  }
+  
+  .languages {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align:center;
+    border-bottom: 1px #d6d5d5  solid;
+    font-size:16px;
+    
+  }
+
+  .highestValue {
+    color:#9fe057;
+  }
+  
+  .info {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+     grid-template-rows: 1fr 1fr;
+     text-align:center;
+  }
+  
+  .info p {
+    
+               color:grey;
+               font-size:12px;
+               margin-bottom:1px;
+  }
+  
+  .bio {
+    font-size:12px;
+    margin-left:1rem;
+    margin-right:1rem;
+    height:100px;
+  }
+  
+  .name {
+    background:#fafbfc;
+    border-top: 1px #d6d5d5  solid;
+  }
+  
+  .name h4 {
+    margin-bottom:0;
+    padding-left:1rem;
+    color:grey;
+  }
+  
+  .name p {
+    font-size:12px;
+    margin: 0;
+  }
+  
+  .login {
+    font-size:12px;
+  }
+  .hireable {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: green;
+  }
+  .nothireable {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: red;
+  }
+  .location {
+    padding-left:1rem;
+    color:grey;
+  }
+  
+
+ /* Languages select */
+select {
+  /* padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+   */
+}
+
+.filterBy {
+  margin-right: 2rem;
+}
+
+
+@media (max-width: 620px) {
+  .radioGroup {
+    flex-direction: row !important;
+  }
+  
+}
