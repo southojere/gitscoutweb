@@ -2,6 +2,8 @@
 
 Gitscout was created in response to people not being able to search and filter for people easily through Github. Aimed towards people who were looking for others to meet, such as those moving to new cities/countries or employers.
 
+![Project Designs](https://i.imgur.com/nFI7Cvy.gif)
+
 ## Code Structure
 
 /client folder contains the frontend of this application, that was built using create-react-app which can be run using 'npm run start'
