@@ -1,12 +1,15 @@
-# gitscoutweb
+# Gitscout
 
 Gitscout was created in response to people not being able to search and filter for people easily through Github. Aimed towards people who were looking for others to meet, such as those moving to new cities/countries or employers.
 
 ![Project Designs](https://i.imgur.com/nFI7Cvy.gif)
 
+Make sure to visit the issues board, Im sure there is something for everyone. If you just want to make CSS style improvements, implement some new frontend components, improve backend logic or search functionality there will be something there.
+
 ## Code Structure
 
 /client folder contains the frontend of this application, that was built using create-react-app which can be run using 'npm run start'
+styled components is used so all of the styling and logic is isolated in its own component.
 
 In the root folder you will find the key backend files for our graphql server, the most important being server.js which the uses both schema.js (contain definition of types and querys) and GitHub.js (datasource connecting to github API).
 
@@ -33,6 +36,8 @@ These instructions will get you a copy of the project up and running on your loc
 * [Express](https://expressjs.com/) - express graphql server
 * [GraphQL](https://graphql.org/code/#javascript) - API interface
 * [Apollo Client](https://www.apollographql.com/docs/react/) - used for querying GraphQL interface to retrieve data from API, and caching.
+* [Styled Components](https://www.styled-components.com/) - styling
+
 
 
 ## Contributing
