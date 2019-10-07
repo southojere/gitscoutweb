@@ -6,7 +6,8 @@ class Person extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: props.user
+            user: props.user,
+            BIO_SUMMARY_MAX_LENGTH: 220
         };
     }
 
@@ -91,7 +92,9 @@ class Person extends Component {
                     </div>
                 </div>
                 <div className="bio">
-                    <p>{this.state.user.bio}</p>
+                    <p>{this.state.user.bio.length < this.state.BIO_SUMMARY_MAX_LENGTH ? 
+                        this.state.user.bio : 
+                        this.state.user.bio.substring(0, this.state.BIO_SUMMARY_MAX_LENGTH) + '...'}</p>
                     {
                         email
                     }
